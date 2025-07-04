@@ -1,6 +1,6 @@
 package TwoDArrays;
 import java.util.*;
-public class SeatingChart {
+public class TicTacToe {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub

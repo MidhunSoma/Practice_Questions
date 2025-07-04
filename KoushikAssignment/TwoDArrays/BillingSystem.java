@@ -20,6 +20,9 @@ public class BillingSystem {
 				total+=bill[i][j];
 				
 			}
+			
+			// Print the total bill for each customer	
+			System.out.print("Rs."+total+"/- ");
 			System.out.println("Rs."+total+"/-");
 		}
 
