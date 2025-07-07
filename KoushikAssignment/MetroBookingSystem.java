@@ -1,11 +1,15 @@
-import java.util.Scanner;
+import java.util.*;
 public class MetroBookingSystem {
 
 	public static void main(String[] args) {
 		Scanner sc=new Scanner(System.in);
 		String reg_username=null,reg_password=null,log_username=null,log_password=null;
 		int source=0,destination=0,tickets=0,fare=0,totalstations=0;
+		String red[]= {"Miyapur", "JNTU College", "KPHB Colony", "Kukatpally", "Balanagar", "Moosapet", "Bharat Nagar", "Erragadda", "ESI Hospital", "SR Nagar", "Ameerpet", "Punjagutta", "Irrum Manzil", "Khairatabad", "Lakdikapul", "Assembly", "Nampally", "Gandhi Bhavan", "Osmania Medical College", "MG Bus Station", "Malakpet", "New Market", "Musarambagh", "Dilsukhnagar", "Chaitanyapuri", "Victoria Memorial", "LB Nagar"};
+		String green[]= {"JBS Parade Ground", "Secunderabad West", "Gandhi Hospital", "Musheerabad", "RTC Cross Roads", "Chikkadpally", "Narayanguda", "Sultan Bazaar", "MG Bus Station"};
+		String blue[]= {"Nagole", "Uppal", "Stadium", "NGRI", "Habsiguda", "Tarnaka", "Mettuguda", "Secunderabad East", "Parade Ground", "Paradise", "Rasoolpura", "Prakash Nagar", "Begumpet", "Ameerpet", "Madhura Nagar", "Yusufguda", "Road No 5 Jubilee Hills", "Jubilee Hills Check Post", "Peddamma Gudi", "Madhapur", "Durgam Cheruvu", "HITEC City", "Raidurg"};
 		boolean b=true;
+		int bt_ch=0;
 		double balance=0.0;
 		while(true) {
 			System.out.println("1.Register\n2.Login\n3.EXIT\n");
@@ -41,7 +45,8 @@ public class MetroBookingSystem {
 					System.out.println();
 					while(true) {
 						System.out.println("OPTIONS :\n1.Recharge Metro Card\n2.Book Tickets\n3.View Balance\n4.History\n5.logout\n");
-						System.out.println("Select the option: ");
+						System.out.print("Select the option: ");
+						System.out.println();
 						int log_ch=sc.nextInt();
 						if(log_ch==1) {
 							System.out.println("==========Recharge Metro Card==========");
@@ -49,15 +54,17 @@ public class MetroBookingSystem {
 							System.out.print("Enter Amount: ");
 							double amount=sc.nextDouble();
 							balance+=amount;
-							System.out.println("Balance Updated");
+							System.out.println("Balance Updated..........");
+							System.out.println();
 							System.out.println("Available Balance: "+balance);
+							System.out.println();
 							
 							}
 						else if(log_ch==2) {
 							System.out.println("==========Book Tickets==========");
 							System.out.println();
 							System.out.println("Select Metro Line\n1.RED Line(L.B.Nagar<->Miyapur)\n2.BLUE Line(Nagole<->Raidurg)\n3.GREEN Line(JBS<->MGBS)\n");
-							int bt_ch=sc.nextInt();
+							bt_ch=sc.nextInt();
 							switch(bt_ch) {
 								case 1:
 									System.out.println("============STATIONS============ \n1. Miyapur\r\n"
@@ -87,6 +94,7 @@ public class MetroBookingSystem {
 											+ "25. Chaitanyapuri\r\n"
 											+ "26. Victoria Memorial\r\n"
 											+ "27. LB Nagar (terminal)");
+									System.out.println();
 									System.out.print("Enter Source station Number:");
 									source=sc.nextInt();
 									System.out.print("Enter Destination Station Number:");
@@ -120,6 +128,7 @@ public class MetroBookingSystem {
 											+ "21. Durgam Cheruvu\r\n"
 											+ "22. HITEC City\r\n"
 											+ "23. Raidurg (terminal)");
+									System.out.println();
 									System.out.print("Enter Source station Number:");
 									source=sc.nextInt();
 									System.out.print("Enter Destination Station Number:");
@@ -139,6 +148,7 @@ public class MetroBookingSystem {
 												+ "7. Narayanguda\r\n"
 												+ "8. Sultan Bazaar\r\n"
 												+ "9. MG Bus Station (terminal)");
+										System.out.println();
 										System.out.print("Enter Source station Number:");
 										source=sc.nextInt();
 										System.out.print("Enter Destination Station Number:");
@@ -181,11 +191,17 @@ public class MetroBookingSystem {
 					else if(log_ch==3) {
 						System.out.println("=============VIEW BALANCE=============");
 						System.out.println("Available Balance= "+balance);
+						System.out.println();
 						}
 					else if(log_ch==4) {
 						System.out.println("==============HISTORY===============");
 						if(b==true) {
-						System.out.println("Your Last journey was from station"+source+"to"+destination);
+							if(bt_ch==1)
+								System.out.println("Your Last Recent journey was from station"+red[source-1]+"to"+red[destination-1]);
+							else if(bt_ch==2)
+								System.out.println("Your Last Recent journey was from station"+blue[source-1]+"to"+blue[destination-1]);
+							else
+								System.out.println("Your Last Recent journey was from station"+green[source-1]+"to"+green[destination-1]);
 						System.out.println("AMOUNT PAID: "+fare);}
 						else
 							System.out.println("NO HISTORY");
